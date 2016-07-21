@@ -1,5 +1,5 @@
 {
-  "name": "react-start-tips",
+  "name": "@wyscout/react-start-tips",
   "version": "1.0.21",
   "description": "Simple component is designed to help the user to understand your application workflow on the first entry",
   "main": "lib/index",
