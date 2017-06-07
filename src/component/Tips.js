@@ -15,6 +15,7 @@ class Tips extends React.Component {
     closeLabel: React.PropTypes.string,
     finishLabel: React.PropTypes.string,
     nextLabel: React.PropTypes.string,
+    above: React.PropTypes.bool,
 
     onCloseTips: React.PropTypes.func.isRequired,
     setCurrentTip: React.PropTypes.func.isRequired,
@@ -49,19 +50,39 @@ class Tips extends React.Component {
   render() {
     const tip = this.props.tips[this.props.currentTipId];
     const isLast = this.props.currentTipId === (this.props.tips.length - 1);
-    return (
-      <div styleName="body">
-        <div styleName="close-btn" onClick={this.props.onCloseTips}>{ this.props.closeLabel }</div>
-        <div styleName="header">{tip.header}</div>
-        <div styleName="title">{tip.title}</div>
-        <img styleName="image"src={this.props.images[this.props.currentTipId + 1]}/>
-        <div styleName="dots-wrap">
-          {
-            this.props.tips.map((t,i) => this.renderDot(i))
-          }
-        </div>
-        {isLast ? this.renderLastButton() : this.renderNextButton()}
-      </div>
-    );
+
+    let content = null;
+
+    if (this.props.above) {
+        content = (
+            <div styleName="body">
+              <div styleName="close-btn" onClick={this.props.onCloseTips}>{ this.props.closeLabel }</div>
+              <img styleName="image"src={this.props.images[this.props.currentTipId + 1]}/>
+              <div styleName="header">{tip.header}</div>
+              <div styleName="title">{tip.title}</div>
+              <div styleName="dots-wrap">
+                {
+                  this.props.tips.map((t,i) => this.renderDot(i))
+                }
+              </div>
+              {isLast ? this.renderLastButton() : this.renderNextButton()}
+          </div>);
+    } else {
+        content = (
+            <div styleName="body">
+              <div styleName="close-btn" onClick={this.props.onCloseTips}>{ this.props.closeLabel }</div>
+              <div styleName="header">{tip.header}</div>
+              <div styleName="title">{tip.title}</div>
+              <img styleName="image"src={this.props.images[this.props.currentTipId + 1]}/>
+              <div styleName="dots-wrap">
+                {
+                  this.props.tips.map((t,i) => this.renderDot(i))
+                }
+              </div>
+              {isLast ? this.renderLastButton() : this.renderNextButton()}
+          </div>);
+    }
+
+    return content;
   }
 }
