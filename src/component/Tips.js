@@ -56,7 +56,7 @@ class Tips extends React.Component {
     if (this.props.above) {
         content = (
             <div styleName="body">
-              <div styleName="close-btn" onClick={this.props.onCloseTips}>{ this.props.closeLabel }</div>
+              <div styleName="close-btn" onClick={this.props.onCloseTips}/>
               <img styleName="image"src={this.props.images[this.props.currentTipId + 1]}/>
               <div styleName="header">{tip.header}</div>
               <div styleName="title">{tip.title}</div>
