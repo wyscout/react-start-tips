@@ -14,9 +14,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onCloseTips: () => { dispatch(closeTips()); },
+    onCloseTips: () => {
+        ownProps.onCloseTips();
+        dispatch(closeTips());
+    },
     setCurrentTip: (id) => {dispatch(setCurrentTip(id))}
   };
 };
